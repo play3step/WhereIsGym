@@ -1,0 +1,53 @@
+.warp {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  height: 80px;
+}
+
+.header-inner {
+  height: 56px;
+  display: flex;
+  margin: 12px;
+  box-sizing: border-box;
+}
+
+.header-button {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+}
+
+.search {
+  background-image: url("../assets/search.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 55px;
+  height: 55px;
+  background-color: white;
+  border: 0px;
+}
+
+.hamburger {
+  background-image: url("../assets/hamburger.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 55px;
+  height: 55px;
+  position: relative;
+  background-color: white;
+  border: 0px;
+}
+
+.make {
+  width: 172px;
+  background-color: #ff8000;
+  color: white;
+  font-size: 20px;
+  border-radius: 100px;
+  border: 0px;
+}
