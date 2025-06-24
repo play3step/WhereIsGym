@@ -16,9 +16,12 @@ function createCommunityBox({
   area = 'area',
   sportName = 'sportName',
 }) {
-  return `<div class="communityBox" id="${sportName}">
+  return /* html */ `
+     
+            <div class="communityBox" id="${sportName}">
             <div class="box">
             <div class="imageContainer">
+            <input type="checkbox" class="checkbox"/>
               <div class="likeButton"></div>
               <img
                 src="${photo}"
@@ -30,7 +33,8 @@ function createCommunityBox({
                 <p class="sportName" id="${sportName}">${sportName}</p>
               </div>
               <p class="title">${title}</p>
-            </div></div>
+            </div>
+            </div>
           </div>`;
 }
 
