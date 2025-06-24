@@ -47,10 +47,10 @@ export const data = [
 
 좋은 사람들과 함께 즐거운 볼링 치실 신입 회원분들
 모집합니다🙂🙃`,
-    category: "볼링",
-    area: "노원구",
+    sportName: '볼링',
+    area: '노원구',
     photo:
-      "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTAyMDZfMTIg%2FMDAxNzM4ODI5NTA4NjQy.PcNUEDvkxLlEprYTndd_ZsUf0d3lXGUlPrnfASbB_pkg.ilhumFNtH5tpLO8yz2pdYxcEjoOmzksXnp1PLsHuXVEg.PNG%2F%25C8%25AD%25B8%25E9_%25C4%25B8%25C3%25B3_2025-02-06_171131.png&type=a340",
+      'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTAyMDZfMTIg%2FMDAxNzM4ODI5NTA4NjQy.PcNUEDvkxLlEprYTndd_ZsUf0d3lXGUlPrnfASbB_pkg.ilhumFNtH5tpLO8yz2pdYxcEjoOmzksXnp1PLsHuXVEg.PNG%2F%25C8%25AD%25B8%25E9_%25C4%25B8%25C3%25B3_2025-02-06_171131.png&type=a340',
   },
 
   {
@@ -74,10 +74,10 @@ export const data = [
 🏅회비 없음 (체육관 입장료 별도, 벙 참여시 콕 3개 제출)
 🤗콕 입금계좌 기업은행 01051141410 이상욱
 21.06.22 ~`,
-    category: "배드민턴",
-    area: "강동구",
+    sportName: '배드민턴',
+    area: '강동구',
     photo:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fmedia.istockphoto.com%2Fvectors%2Fbear-vector-polar-bear-icon-logo-badminton-racket-sport-cartoon-vector-id998710400%3Fk%3D6%26m%3D998710400%26s%3D170667a%26w%3D0%26h%3DqhM_JGLRDYut8s2gV2XPBaXvu0Hea6Yaon4Ag7Jb2Y0%3D&type=l340_165",
+      'https://search.pstatic.net/sunny/?src=https%3A%2F%2Fmedia.istockphoto.com%2Fvectors%2Fbear-vector-polar-bear-icon-logo-badminton-racket-sport-cartoon-vector-id998710400%3Fk%3D6%26m%3D998710400%26s%3D170667a%26w%3D0%26h%3DqhM_JGLRDYut8s2gV2XPBaXvu0Hea6Yaon4Ag7Jb2Y0%3D&type=l340_165',
   },
 
   {
@@ -99,13 +99,13 @@ export const data = [
 단톡방 입장방법은 소모임 채팅방에
 단톡방 초대 부탁드립니다  라고 쓰시면
 단톡방 url 로 초대해 드립니다`,
-    category: "골프",
-    area: "강남구",
+    sportName: '골프',
+    area: '강남구',
     photo:
-      "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA2MjZfMjQz%2FMDAxNjg3Nzg0ODI4ODIw.YtQzTJBTm7Airz_ZR9pm4qe2JDAY2bXwz4AEqoZhI5Ug.8KTbThcpnpwwRQe41JCPU_Oa3snQnol9q5eASIvTaHIg.JPEG.green_sketchbook%2F%25C4%25AB%25C4%25AB%25BF%25C0%25B0%25F1%25C7%25C1.jpg&type=a340",
+      'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA2MjZfMjQz%2FMDAxNjg3Nzg0ODI4ODIw.YtQzTJBTm7Airz_ZR9pm4qe2JDAY2bXwz4AEqoZhI5Ug.8KTbThcpnpwwRQe41JCPU_Oa3snQnol9q5eASIvTaHIg.JPEG.green_sketchbook%2F%25C4%25AB%25C4%25AB%25BF%25C0%25B0%25F1%25C7%25C1.jpg&type=a340',
   },
   {
-    title: "한마음 cycling",
+    title: '한마음 cycling',
     introduction: `샤방샤방  경치 먹방 즐기며   힐링 ~~~ 
 자전거모임 입니다
 동종 타모임  모임장  운영진  환영합니다 
@@ -114,10 +114,10 @@ export const data = [
 48시간 안에 자소서 쓰기♡
 언제 누구든  벙 개최 가능^^뽐내보세요
 마구마구  뽐뽐뽐!!!`,
-    category: "자전거",
-    area: "노원구",
+    sportName: '자전거',
+    area: '노원구',
     photo:
-      "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MjZfMzkg%2FMDAxNjU4ODQ2NzQ2OTU4.sW3dc_QK9YO2KPQ0N3xfwhVt9FhJvJvqxXR0jRfCp3wg.uQaoWZwwgeIMaCubHrxL6GsipiJQCBmssAgX7lHhlREg.JPEG.so21h%2FIMG_1466.JPG&type=a340",
+      'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MjZfMzkg%2FMDAxNjU4ODQ2NzQ2OTU4.sW3dc_QK9YO2KPQ0N3xfwhVt9FhJvJvqxXR0jRfCp3wg.uQaoWZwwgeIMaCubHrxL6GsipiJQCBmssAgX7lHhlREg.JPEG.so21h%2FIMG_1466.JPG&type=a340',
   },
   {
     title: `🐥골프로그 GOLF:LOG⛳️`,
@@ -167,9 +167,9 @@ export const data = [
 - 자소서 삭제시 탈퇴 부탁드려요
 - 미참여/유령회원
 - 불편한 언행`,
-    category: "골프",
-    area: "광진구",
+    sportName: '골프',
+    area: '광진구',
     photo:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F1a%2F44%2F54%2F1a44541a2639d359b7fc7409e48058d2.jpg&type=a340",
+      'https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F1a%2F44%2F54%2F1a44541a2639d359b7fc7409e48058d2.jpg&type=a340',
   },
 ];
