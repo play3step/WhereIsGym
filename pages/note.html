@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../assets/images/favicon-32x32.png" />
     <link rel="stylesheet" href="../css/note.css" />
-    <link rel="stylesheet" href="../css/reset.css" />
     <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
     <script src="../js/communityMain.js" type="module"></script>
 
@@ -102,23 +101,40 @@
     <main>
       <form>
         <div class="select-wrapper">
-          <select class="select-box" id="category" aria-placeholder="카테고리">
+          <select class="select-box" id="category">
             <option value="" disabled selected hidden>카테고리 선택</option>
+            <option value="health">헬스</option>
+            <option value="pilates">필라테스</option>
+            <option value="crossfit">크로스핏</option>
+            <option value="tennis">테니스</option>
+            <option value="swimming">수영</option>
             <option value="badminton">배드민턴</option>
-            <option value="soccer">축구</option>
-            <option value="bicycle">자전거</option>
-            <option value="running">러닝</option>
+            <option value="boxing">복싱</option>
+            <option value="etc">기타</option>
           </select>
-          <select class="select-box" id="region1" aria-placeholder="지역1">
-            <option value="" disabled selected hidden>지역1 선택</option>
-            <option value="서울">서울</option>
-            <option value="부산">부산</option>
+
+          <select class="select-box" id="region1" onchange="regionChange(this)">
+            <option value="" disabled selected hidden>시/도 선택</option>
+            <option value="general01">강원</option>
+            <option value="general02">경기</option>
+            <option value="general03">경남</option>
+            <option value="general04">경북</option>
+            <option value="general05">광주</option>
+            <option value="general06">대구</option>
+            <option value="general07">대전</option>
+            <option value="general08">부산</option>
+            <option value="general09">서울</option>
+            <option value="general10">울산</option>
+            <option value="general11">인천</option>
+            <option value="general12">전남</option>
+            <option value="general13">전북</option>
+            <option value="general14">제주</option>
+            <option value="general15">충남</option>
+            <option value="general16">충북</option>
           </select>
-          <select class="select-box" id="region2" aria-placeholder="지역2">
-            <option value="" disabled selected hidden>지역2 선택</option>
-            <option value="노원구">노원구</option>
-            <option value="중랑구">중랑구</option>
-            <option value="어쩌구">어쩌구</option>
+
+          <select class="select-box" id="region2">
+            <option value="" disabled selected hidden>군/구 선택</option>
           </select>
         </div>
 
