@@ -51,26 +51,42 @@ async function renderCommunityList() {
     // API에서 게시글 가져오기
     posts = await getAllPosts();
     posts.forEach((post) => renderCommunityBox(communityBoxs, post));
+    
+    // 좋아요 버튼 이벤트 추가
+    addLikeButtonListeners();
   } catch (error) {
     console.error('게시글을 렌더링하는 중 오류 발생:', error);
     communityBoxs.innerHTML = '<p>게시글을 불러오는 중 오류가 발생했습니다.</p>';
   }
 }
 
-// 페이지 로드시 게시글 렌더링
-renderCommunityList();
+//좋아요
+function isActiveLike(e) {
+  const target = e.target;
+  target.classList.toggle('active');
+}
+
+// 좋아요 버튼 이벤트 리스너 등록
+function addLikeButtonListeners() {
+  const likeBtns = document.querySelectorAll('.likeButton');
+  likeBtns.forEach((likebtn) => {
+    likebtn.addEventListener('click', isActiveLike);
+  });
+}
 
 // 필터링
 function filterCategory(sportName) {
   communityBoxs.innerHTML = '';
   const filteredPosts = filterPostsBySport(posts, sportName);
   filteredPosts.forEach((post) => renderCommunityBox(communityBoxs, post));
+  addLikeButtonListeners();
 }
 
 //필터링 초기화
 function filterReset() {
   communityBoxs.innerHTML = '';
   posts.forEach((post) => renderCommunityBox(communityBoxs, post));
+  addLikeButtonListeners();
 }
 
 //클릭한 필터 버튼 활성화
@@ -84,12 +100,6 @@ function isActiveFilterBtn(e) {
       btn.classList.add('active');
     }
   });
-}
-
-//좋아요
-function isActiveLike(e) {
-  const target = e.target;
-  target.classList.toggle('active');
 }
 
 //검색 기능
@@ -107,7 +117,7 @@ function handleInput(e) {
 
   const filteredPosts = posts.filter(post => 
     post.sportName.toLowerCase().includes(keyword) ||
-    post.originalTitle.toLowerCase().includes(keyword)
+    post.title.toLowerCase().includes(keyword)
   );
 
   communityBoxs.innerHTML = '';
@@ -117,38 +127,37 @@ function handleInput(e) {
   }
   
   filteredPosts.forEach(post => renderCommunityBox(communityBoxs, post));
+  addLikeButtonListeners();
 }
 
+// 이벤트 리스너 등록
 searchForm.addEventListener('submit', handleInput);
 inputBtn.addEventListener('click', handleInput);
 
 badmintonBtn.addEventListener('click', () => {
   isActiveFilterBtn({ target: badmintonBtn });
-  filterCategory('자전거');
-});
-bowlingBtn.addEventListener('click', () => {
-  isActiveFilterBtn({ target: bowlingBtn });
   filterCategory('배드민턴');
 });
+
+bowlingBtn.addEventListener('click', () => {
+  isActiveFilterBtn({ target: bowlingBtn });
+  filterCategory('볼링');
+});
+
 golfBtn.addEventListener('click', () => {
   isActiveFilterBtn({ target: golfBtn });
   filterCategory('골프');
 });
+
 cycleBtn.addEventListener('click', () => {
   isActiveFilterBtn({ target: cycleBtn });
   filterCategory('자전거');
 });
+
 resetBtn.addEventListener('click', () => {
   isActiveFilterBtn({ target: resetBtn });
   filterReset();
 });
 
-//DOM이 로드된 후에만 likeButton을 찾고 이벤트 핸들러를 등록
-document.addEventListener('DOMContentLoaded', function () {
-  const likeBtns = document.querySelectorAll('.likeButton');
-  if (likeBtns) {
-    likeBtns.forEach((likebtn) => {
-      likebtn.addEventListener('click', isActiveLike);
-    });
-  }
-});
+// 페이지 로드시 게시글 렌더링
+renderCommunityList();
