@@ -13,13 +13,14 @@ let posts = []; // 전체 게시글을 저장할 변수
 
 //태그 생성
 function createCommunityBox({
+  id,
   sportName = 'sportName',
   title = 'title',
   createdAt = new Date().toISOString(),
 }) {
   const date = new Date(createdAt).toLocaleDateString('ko-KR');
   return /* html */ `
-    <div class="communityBox" id="${sportName}">
+    <div class="communityBox" id="${sportName}" data-id="${id}">
       <div class="box">
         <div class="imageContainer">
           <div class="likeButton"></div>
@@ -35,6 +36,28 @@ function createCommunityBox({
       </div>
     </div>`;
 }
+
+// 게시글 클릭 이동
+function handlePostClick(e) {
+  const postBox = e.target.closest('.communityBox');
+  if (!postBox) return;
+  
+  const postId = postBox.dataset.id;
+  if (!postId) return;
+
+  if (e.target.classList.contains('likeButton')) return;
+  
+  const newUrl = `/pages/community-detail.html?id=${postId}`;
+  history.pushState({ postId }, '', newUrl);
+  
+  window.location.href = newUrl;
+}
+
+window.addEventListener('popstate', (e) => {
+  if (e.state && e.state.postId) {
+    renderCommunityList();
+  }
+});
 
 //모임 렌더링
 function renderCommunityBox(target, data) {
@@ -53,6 +76,9 @@ async function renderCommunityList() {
     
     // 좋아요 버튼 이벤트 추가
     addLikeButtonListeners();
+    
+    // 게시글 클릭 이벤트 추가
+    communityBoxs.addEventListener('click', handlePostClick);
   } catch (error) {
     console.error('게시글을 렌더링하는 중 오류 발생:', error);
     communityBoxs.innerHTML = '<p>게시글을 불러오는 중 오류가 발생했습니다.</p>';
