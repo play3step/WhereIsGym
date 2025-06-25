@@ -21,7 +21,44 @@
 - **CSS3**
 - **Vanilla JavaScript (ES6+)**
 - **Kakao Maps JavaScript API**
+- **[marked.js](https://github.com/markedjs/marked)**
+- **localStorage**
 
+---
+
+## 📁 프로젝트 구조
+```
+📦 WhereIsGym/
+├── 📁 assets/ # 이미지, 아이콘 등 정적 리소스
+├── 📁 css/ # 스타일시트
+│   ├── reset.css
+│   ├── main.css
+│   └── ...
+├── 📁 js/ # 주요 화면별 자바스크립트 파일
+│   ├── main.js
+│   ├── markdown.js
+│   ├── local_storage.js
+│   ├── community.js
+│   ├── communityMain.js
+│   ├── detail.js
+│   ├── post.js
+│   ├── reservation.js
+│   ├── search.js
+│   └── search_list.js
+├── 📁 pages/ # 개별 화면 HTML
+│   ├── community.html
+│   ├── community-detail.html
+│   ├── note.html
+│   ├── reservation.html
+│   ├── reservation_complete.html
+│   ├── search.html
+│   ├── search_list.html
+│   └── detail.html
+├── index.html # 메인 진입 페이지
+├── package.json
+├── package-lock.json
+└── README.md # 프로젝트 설명 문서
+```
 ---
 
 ## 🚀 실행 방법
