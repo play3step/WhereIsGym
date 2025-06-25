@@ -30,7 +30,9 @@ async function createCommunityContent(Community, documentId) {
 export function createCommunity() {
   const title = document.querySelector('.title');
   const content = document.querySelector('.text-field');
-  const titleText = title.value;
+
+  const categoryText = communitycategory();
+  const titleText = categoryText + title.value;
   const contentText = content.value;
 
   createCommunityTitle({
@@ -47,9 +49,17 @@ export function createCommunity() {
     );
 }
 
+//지역 받아오기
 function communityRegion() {
   const region1 = document.querySelector('#region1');
   const region2 = document.querySelector('#region2');
   const region = region1.value + ' ' + region2.value;
   return region;
+}
+
+//카테고리 받아오기
+function communitycategory() {
+  const category = document.querySelector('#category');
+  const categoryText = category.value + '-';
+  return categoryText;
 }
