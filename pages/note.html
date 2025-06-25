@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko-KR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../assets/images/favicon-32x32.png" />
-  <link rel="stylesheet" href="../css/note.css" />
-  <script src="../js/local_storage.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
-  <script src="../js/markdown.js" defer></script>
-  <title>모임 만들기</title>
-</head>
-<body>
-  <div class="layout">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../assets/images/favicon-32x32.png" />
+    <link rel="stylesheet" href="../css/note.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <script src="../js/local_storage.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script src="../js/markdown.js" defer></script>
+    <title>모임 만들기</title>
+  </head>
+  <body>
     <header class="header">
       <div class="header-inner">
         <h1 class="logo">
@@ -91,39 +91,69 @@
           </a>
         </h1>
         <nav>
-        <ul class="nav">
-          <li><a href="../pages/community.html">모임</a></li>
-          <li><a href="../pages/search.html">시설 찾기</a></li>
-        </ul>
-      </nav>
+          <ul class="nav">
+            <li><a href="../pages/community.html">모임</a></li>
+            <li><a href="../pages/search.html">시설 찾기</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
+
     <main>
+
       <form>
-        <select name="" id="category" aria-placeholder="카테고리">
-          <option value="">배드민턴</option>
-          <option value="">축구</option>
-          <option value="">자전거</option>
-          <option value="">러닝</option>
-        </select>
+        <div class="select-wrapper">
+          <select class="select-box" id="category" aria-placeholder="카테고리">
+            <option value="" disabled selected hidden>카테고리 선택</option>
+            <option value="badminton">배드민턴</option>
+            <option value="soccer">축구</option>
+            <option value="bicycle">자전거</option>
+            <option value="running">러닝</option>
+          </select>
+          <select class="select-box" id="region1" aria-placeholder="지역1">
+            <option value="" disabled selected hidden>지역1 선택</option>
+            <option value="" >서울</option>
+            <option value="">부산</option>
+          </select>
+          <select class="select-box" id="region2" aria-placeholder="지역2">
+            <option value="" disabled selected hidden>지역2 선택</option>
+            <option value="">노원구</option>
+            <option value="">중랑구</option>
+            <option value="">어쩌구</option>
+          </select>
+        </div>
 
-        <div class="main-field">
-        <input type="text" placeholder="제목을 입력하세요." class="title" id="title"/>
-        <textarea name="" id="text" class="text-field"></textarea>
-      </div>
+        <div class="editor-container">
+          <input
+            type="text"
+            placeholder="제목을 입력하세요."
+            class="title"
+            id="title"
+          />
 
-      <!-- 미리보기 -->
-      <div class="markdown-preview"></div>
+          <div class="editor-body">
+            <textarea
+              id="text"
+              class="text-field"
+              placeholder="# 여기에 마크다운을 작성하세요"
+            ></textarea>
 
+            <div class="markdown-preview" id="markdown-preview"></div>
+          </div>
+        </div>
       </form>
-    </main>
-    <aside class="footer-wrap">
-      <div class="footer-btn_wrap">
-      <button type="button" class="footer-btn save">임시저장</button>
-      <button class="footer-btn complete">완료</button>
-    </div>
-  </aside>
-  </div>
 
-</body>
+    </main>
+
+
+    <aside class="footer-wrap">
+      <div class="footer-inner">
+        <div class="footer-btn-wrap">
+          <button type="button" class="footer-btn save">임시저장</button>
+          <button class="footer-btn complete">완료</button>
+        </div>
+      </div>
+    </aside>
+
+  </body>
 </html>

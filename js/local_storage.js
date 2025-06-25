@@ -1,5 +1,6 @@
 const saveBtn = document.querySelector('.save');
 const completeBtn = document.querySelector('.complete');
+const preview = document.querySelector('#markdown-preview');
 
 
 
