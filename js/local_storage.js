@@ -118,3 +118,4 @@ completeBtn.addEventListener('click', deleteSave);
 document.addEventListener('DOMContentLoaded', renderSaveData);
 
 
+window.regionChange = regionChange;
