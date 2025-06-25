@@ -1,21 +1,63 @@
-/* 전체 커스텀 */
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 페이지 전체 css */
 input,
 textarea {
   border: 0;
   outline: none;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+/* 헤더 */
+header * {
+  font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
-/* body {
-  height: 100vh;
-  overflow: hidden;
-} */
-
-/* 헤더 */
 .header {
   position: sticky;
   top: 0;
@@ -76,7 +118,7 @@ a {
   flex: 1;
   padding: 12px;
   font-size: 16px;
-  border: 1px solid #ccc; /* 기본 회색 테두리 */
+  border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
   appearance: none;
@@ -88,17 +130,15 @@ a {
   transition: all 0.1s ease;
 }
 
-/* hover 시 테두리만 주황 */
 .select-box:hover {
   border-color: #ff962c;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ff962c" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
 }
 
-/* focus 시 테두리 + 화살표 주황 */
 .select-box:focus {
   outline: none;
   border-color: #ff962c;
   box-shadow: 0 0 0 2px rgba(255, 150, 44, 0.4);
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ff962c" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
 }
 
 /* 메인 컨텐츠 */
@@ -207,5 +247,5 @@ main {
 }
 
 .footer-btn.complete:hover {
-  background-color: #ff8400; /* 조금 더 진한 오렌지 */
+  background-color: #ff8400;
 }
