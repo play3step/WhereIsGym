@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../assets/images/favicon-32x32.png" />
   <link rel="stylesheet" href="../css/note.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+  <script src="../js/markdown.js" defer></script>
   <title>모임 만들기</title>
 </head>
 <body>
@@ -107,6 +109,10 @@
         <input type="text" placeholder="제목을 입력하세요." class="title" id="title"/>
         <textarea name="" id="" class="text-field"></textarea>
       </div>
+
+      <!-- 미리보기 -->
+      <div class="markdown-preview"></div>
+
       </form>
     </main>
     <aside class="footer-wrap">
