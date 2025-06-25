@@ -27,9 +27,7 @@ async function createCommunityContent(Community, documentId) {
   return content;
 }
 
-const completeBtn = document.querySelector('.complete');
-
-function createCommunity() {
+export function createCommunity() {
   const title = document.querySelector('.title');
   const content = document.querySelector('.text-field');
   const titleText = title.value;
@@ -44,5 +42,3 @@ function createCommunity() {
     )
   );
 }
-
-completeBtn.addEventListener('click', createCommunity);
