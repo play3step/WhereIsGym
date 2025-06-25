@@ -1,4 +1,4 @@
-import { data } from '../data/communityData.js';
+import { getAllPosts, filterPostsBySport } from '../apis/postController.js';
 
 const communityBoxs = document.querySelector('.communityBoxs');
 const golfBtn = document.querySelector('.golf');
@@ -9,33 +9,32 @@ const resetBtn = document.querySelector('.resetButton');
 const searchForm = document.querySelector('.searchForm');
 const inputBtn = document.querySelector('.inputButton');
 
+let posts = []; // 전체 게시글을 저장할 변수
+
 //태그 생성
 function createCommunityBox({
-  photo = 'photo',
-  title = 'title',
-  area = 'area',
   sportName = 'sportName',
+  title = 'title',
+  createdAt = new Date().toISOString(),
 }) {
+  const date = new Date(createdAt).toLocaleDateString('ko-KR');
   return /* html */ `
-     
-            <div class="communityBox" id="${sportName}">
-            <div class="box">
-            <div class="imageContainer">
-            <input type="checkbox" class="checkbox"/>
-              <div class="likeButton"></div>
-              <img
-                src="${photo}"
-              />
-            </div>
-            <div class="textContainer">
-              <div class="areaSport">
-                <p class="area" id="${area}">${area} ·</p>
-                <p class="sportName" id="${sportName}">${sportName}</p>
-              </div>
-              <p class="title">${title}</p>
-            </div>
-            </div>
-          </div>`;
+    <div class="communityBox" id="${sportName}">
+      <div class="box">
+        <div class="imageContainer">
+          <input type="checkbox" class="checkbox"/>
+          <div class="likeButton"></div>
+          <img src="../assets/images/workout.jpg" alt="${sportName} 모임" />
+        </div>
+        <div class="textContainer">
+          <div class="areaSport">
+            <p class="sportName" id="${sportName}">${sportName}</p>
+            <p class="date">${date}</p>
+          </div>
+          <p class="title">${title}</p>
+        </div>
+      </div>
+    </div>`;
 }
 
 //모임 렌더링
@@ -44,30 +43,34 @@ function renderCommunityBox(target, data) {
 }
 
 //전체 모임 렌더링
-function renderCommunityList() {
-  data.forEach((data) => renderCommunityBox(communityBoxs, data));
+async function renderCommunityList() {
+  try {
+    // 기존 게시글 삭제
+    communityBoxs.innerHTML = '';
+    
+    // API에서 게시글 가져오기
+    posts = await getAllPosts();
+    posts.forEach((post) => renderCommunityBox(communityBoxs, post));
+  } catch (error) {
+    console.error('게시글을 렌더링하는 중 오류 발생:', error);
+    communityBoxs.innerHTML = '<p>게시글을 불러오는 중 오류가 발생했습니다.</p>';
+  }
 }
+
+// 페이지 로드시 게시글 렌더링
 renderCommunityList();
 
 // 필터링
-function filterCategory(node, categoryValue) {
-  const communityBoxs = document.querySelectorAll('.communityBox');
-  communityBoxs.forEach((communityBox) => {
-    const category = communityBox.querySelector(node);
-
-    if (!(category.id === categoryValue)) {
-      communityBox.hidden = true;
-    } else {
-      communityBox.hidden = false;
-    }
-  });
+function filterCategory(sportName) {
+  communityBoxs.innerHTML = '';
+  const filteredPosts = filterPostsBySport(posts, sportName);
+  filteredPosts.forEach((post) => renderCommunityBox(communityBoxs, post));
 }
+
 //필터링 초기화
 function filterReset() {
-  const communityBoxs = document.querySelectorAll('.communityBox');
-  communityBoxs.forEach((communityBox) => {
-    communityBox.hidden = false;
-  });
+  communityBoxs.innerHTML = '';
+  posts.forEach((post) => renderCommunityBox(communityBoxs, post));
 }
 
 //클릭한 필터 버튼 활성화
@@ -89,56 +92,56 @@ function isActiveLike(e) {
   target.classList.toggle('active');
 }
 
-//검색 기능 -> 보완 필요 : 배드민턴 대신 배드만 검색해도 결과가 나오게
+//검색 기능
 function handleInput(e) {
   e.preventDefault();
   isActiveFilterBtn(e);
   const input = document.querySelector('.input');
-  const keyword = input.value;
-  if (!keyword.trim()) {
+  const keyword = input.value.trim().toLowerCase();
+  
+  if (!keyword) {
     alert('검색어를 입력해 주세요.');
     input.focus();
+    return;
   }
 
-  if (searchKeyword(keyword) === 0) alert('일치하는 모임이 없습니다.');
-}
+  const filteredPosts = posts.filter(post => 
+    post.sportName.toLowerCase().includes(keyword) ||
+    post.originalTitle.toLowerCase().includes(keyword)
+  );
 
-//검색어와 일치하는 모임 찾기
-function searchKeyword(keyword) {
-  let matchNum = 0;
-  data.forEach(({ title, area, sportName }) => {
-    if (
-      keyword.includes(title) ||
-      keyword.includes(area) ||
-      keyword.includes(sportName)
-    ) {
-      filterCategory('.sportName', sportName);
-      matchNum++;
-    }
-  });
-  return matchNum;
+  communityBoxs.innerHTML = '';
+  if (filteredPosts.length === 0) {
+    alert('일치하는 모임이 없습니다.');
+    return;
+  }
+  
+  filteredPosts.forEach(post => renderCommunityBox(communityBoxs, post));
 }
 
 searchForm.addEventListener('submit', handleInput);
 inputBtn.addEventListener('click', handleInput);
 
-badmintonBtn.addEventListener('click', () =>
-  filterCategory('.sportName', '배드민턴')
-);
-bowlingBtn.addEventListener('click', () =>
-  filterCategory('.sportName', '볼링')
-);
-golfBtn.addEventListener('click', () => filterCategory('.sportName', '골프'));
-cycleBtn.addEventListener('click', () =>
-  filterCategory('.sportName', '자전거')
-);
-resetBtn.addEventListener('click', filterReset);
-
-badmintonBtn.addEventListener('click', isActiveFilterBtn);
-bowlingBtn.addEventListener('click', isActiveFilterBtn);
-golfBtn.addEventListener('click', isActiveFilterBtn);
-cycleBtn.addEventListener('click', isActiveFilterBtn);
-resetBtn.addEventListener('click', isActiveFilterBtn);
+badmintonBtn.addEventListener('click', () => {
+  isActiveFilterBtn({ target: badmintonBtn });
+  filterCategory('자전거');
+});
+bowlingBtn.addEventListener('click', () => {
+  isActiveFilterBtn({ target: bowlingBtn });
+  filterCategory('배드민턴');
+});
+golfBtn.addEventListener('click', () => {
+  isActiveFilterBtn({ target: golfBtn });
+  filterCategory('골프');
+});
+cycleBtn.addEventListener('click', () => {
+  isActiveFilterBtn({ target: cycleBtn });
+  filterCategory('자전거');
+});
+resetBtn.addEventListener('click', () => {
+  isActiveFilterBtn({ target: resetBtn });
+  filterReset();
+});
 
 //DOM이 로드된 후에만 likeButton을 찾고 이벤트 핸들러를 등록
 document.addEventListener('DOMContentLoaded', function () {
