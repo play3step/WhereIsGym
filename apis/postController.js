@@ -39,6 +39,18 @@ async function getAllPosts() {
     }
 }
 
+async function deletePost(id) {
+    try {
+        const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${id} `, {
+            method: 'DELETE',
+            headers
+        });
+    } catch (error) {
+        console.error('게시글을 삭제하는 중 오류 발생:', error);
+        throw error;
+    }
+}
+
 // 특정 스포츠의 게시글만 필터링하는 함수
 function filterPostsBySport(posts, sportName) {
     return posts.filter(post => post.sportName.toLowerCase() === sportName.toLowerCase());
@@ -48,5 +60,6 @@ export {
     getAllPosts,
     filterPostsBySport,
     parsePostTitle,
-    processPostData
+    processPostData,
+    deletePost
 };
