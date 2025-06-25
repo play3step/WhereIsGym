@@ -181,5 +181,10 @@ resetBtn.addEventListener('click', () => {
   filterReset();
 });
 
+const makeButton = document.querySelector('.make');
+makeButton.addEventListener('click', () => {
+  window.location.href = '/pages/note.html';
+});
+
 // 페이지 로드시 게시글 렌더링
 renderCommunityList();
