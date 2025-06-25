@@ -234,7 +234,8 @@ button {
 }
 
 .view-all-link:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color:#ff8000
 }
 
 
@@ -267,7 +268,8 @@ button {
 }
 
 .more-link:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color:#ff8000
 }
 
 .community-cards {
