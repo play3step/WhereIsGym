@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../css/note.css" />
     <script src="../js/local_storage.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
-    <script src="../js/markdown.js" defer></script>
+    <script src="../js/communityMain.js" type="module"></script>
+
     <title>모임 만들기</title>
   </head>
   <body>
@@ -99,6 +100,7 @@
     </header>
 
     <main>
+
       <form>
         <div class="select-wrapper">
           <select class="select-box" id="category">
@@ -132,7 +134,7 @@
             <option value="general15">충남</option>
             <option value="general16">충북</option>
           </select>
-          
+
           <select class="select-box" id="region2">
             <option value="" disabled selected hidden>군/구 선택</option>
           </select>
@@ -157,7 +159,9 @@
           </div>
         </div>
       </form>
+
     </main>
+
 
     <aside class="footer-wrap">
       <div class="footer-inner">
@@ -167,5 +171,6 @@
         </div>
       </div>
     </aside>
+
   </body>
 </html>
