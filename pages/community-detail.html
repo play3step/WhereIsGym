@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/assets/images/favicon-32x32.png" />
   <link rel="stylesheet" href="../css/community-detail.css" />
-  <script src="../js/community-detail.js" defer></script>
+  <script src="../js/community-detail.js" type="module" defer></script>
   <title>모임 상세페이지</title>
 </head>
 <body>
@@ -101,9 +101,31 @@
         <img src="../assets/images/workout.jpg" alt="" />
       </div>
       <div class="group">
+        <div class="group-header">
         <div class="group-title">
         <h1 class="title">모임명</h1>
         <div class="category"></div>
+      </div>
+      <div class="group-btn_wrap">
+        <button type="button" class="group-btn">
+          <svg width="18" height="18" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 57V72H15L59.24 27.76L44.24 12.76L0 57ZM70.84 16.16C72.4 14.6 72.4 12.08 70.84 10.52L61.48 1.15999C59.92 -0.40001 57.4 -0.40001 55.84 1.15999L48.52 8.47999L63.52 23.48L70.84 16.16Z" fill="#888888"/>
+            </svg>
+        </button>
+        <button type="button" class="group-btn delete">
+          <svg width="18" height="18" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_15_13)">
+            <path d="M24 76C24 80.4 27.6 84 32 84H64C68.4 84 72 80.4 72 76V28H24V76ZM76 16H62L58 12H38L34 16H20V24H76V16Z" fill="#888888"/>
+            </g>
+            <defs>
+            <clippath id="clip0_15_13">
+            <rect width="96" height="96" fill="white"/>
+            </clippath>
+            </defs>
+            </svg>            
+        </button>
+
+      </div>
       </div>
         <!-- <div class="group-category">
         <div>카테고리</div>
