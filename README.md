@@ -28,3 +28,12 @@
 
 - `npm install`로 패키지를 설치한 후,
 - `npm run dev`로 실행합니다.
+
+---
+
+## 👨‍💻 팀원 
+
+| 박철현 👑 | 임가희 | 이성균 | 김태은 | 문태민 |
+| --- | --- | --- | --- | --- |
+| ![image](https://avatars.githubusercontent.com/play3step?s=420)| ![image](https://avatars.githubusercontent.com/gahee6?s=420)| ![Image](https://avatars.githubusercontent.com/skyunlee98?s=420) | ![Image](https://avatars.githubusercontent.com/taeeun98?s=420) | ![Image](https://avatars.githubusercontent.com/mtm-git1018?s=420) |
+| [GitHub](https://github.com/play3step) | [GitHub](https://github.com/gahee6) | [GitHub](https://github.com/skyunlee98) | [GitHub](https://github.com/taeeun98) | [GitHub](https://github.com/mtm-git1018) |
