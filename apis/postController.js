@@ -41,10 +41,13 @@ async function getAllPosts() {
 
 async function deletePost(id) {
     try {
-        const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${id} `, {
+        const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${id}`, {
             method: 'DELETE',
             headers
         });
+        if (!response.ok) {
+            throw new Error('게시글 삭제에 실패했습니다.');
+        }
     } catch (error) {
         console.error('게시글을 삭제하는 중 오류 발생:', error);
         throw error;
