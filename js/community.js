@@ -22,7 +22,6 @@ function createCommunityBox({
     <div class="communityBox" id="${sportName}">
       <div class="box">
         <div class="imageContainer">
-          <input type="checkbox" class="checkbox"/>
           <div class="likeButton"></div>
           <img src="../assets/images/workout.jpg" alt="${sportName} 모임" />
         </div>
