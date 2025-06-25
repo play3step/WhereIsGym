@@ -72,10 +72,30 @@ main{
   gap: 8px;
 }
 
+.group-header{
+  display:flex;
+  justify-content: space-between;
+}
+
 .group-title{
   display: flex;
   align-items: flex-end;
   gap: 16px;
+}
+
+.group-btn_wrap{
+  display:flex;
+  align-items:flex-end;
+  gap: 8px;
+}
+
+.group-btn{
+
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  cursor: pointer;
+  
 }
 
 .category{
