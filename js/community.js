@@ -47,10 +47,7 @@ function handlePostClick(e) {
 
   if (e.target.classList.contains('likeButton')) return;
   
-  const newUrl = `/pages/community-detail.html?id=${postId}`;
-  history.pushState({ postId }, '', newUrl);
-  
-  window.location.href = newUrl;
+  window.location.href = `/pages/community-detail.html?id=${postId}`;
 }
 
 window.addEventListener('popstate', (e) => {
