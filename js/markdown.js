@@ -1,3 +1,7 @@
+marked.setOptions({
+  breaks: true,
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const textarea = document.querySelector('#text');
   const preview = document.querySelector('#markdown-preview');
