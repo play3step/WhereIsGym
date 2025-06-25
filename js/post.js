@@ -35,10 +35,21 @@ export function createCommunity() {
 
   createCommunityTitle({
     title: titleText,
-  }).then((Community) =>
-    createCommunityContent(
-      { title: Community.title, content: contentText },
-      Community.id
+  })
+    .then((Community) =>
+      createCommunityContent(
+        { title: Community.title, content: contentText },
+        Community.id
+      )
     )
-  );
+    .then((Community) =>
+      createCommunityTitle({ parent: Community.id, title: communityRegion() })
+    );
+}
+
+function communityRegion() {
+  const region1 = document.querySelector('#region1');
+  const region2 = document.querySelector('#region2');
+  const region = region1.value + ' ' + region2.value;
+  return region;
 }

@@ -34,6 +34,7 @@ function handleSave() {
 function deleteSave() {
   window.localStorage.clear();
   createCommunity();
+  // btn();
 }
 
 saveBtn.addEventListener('click', handleSave);
