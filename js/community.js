@@ -1,15 +1,24 @@
 import { getAllPosts, filterPostsBySport } from '../apis/postController.js';
 
 const communityBoxs = document.querySelector('.communityBoxs');
-const golfBtn = document.querySelector('.golf');
-const cycleBtn = document.querySelector('.cycle');
-const badmintonBtn = document.querySelector('.badminton');
-const bowlingBtn = document.querySelector('.bowling');
+const filterButtons = document.querySelectorAll('.filterList li');
 const resetBtn = document.querySelector('.resetButton');
 const searchForm = document.querySelector('.searchForm');
 const inputBtn = document.querySelector('.inputButton');
 
 let posts = []; // 전체 게시글을 저장할 변수
+
+const sportImages = {
+  '배드민턴': '../assets/groupImage/badminton.jpg',
+  '볼링': '../assets/groupImage/balling.jpg',
+  '야구': '../assets/groupImage/baseball.jpg',
+  '농구': '../assets/groupImage/bascketball.jpg',
+  '자전거': '../assets/groupImage/cycle.jpg',
+  '축구': '../assets/groupImage/football.jpg',
+  '골프': '../assets/groupImage/golf.jpg',
+  '수영': '../assets/groupImage/swimming.jpg',
+  '탁구': '../assets/groupImage/tabletennis.jpg',
+};
 
 //태그 생성
 function createCommunityBox({
@@ -19,16 +28,18 @@ function createCommunityBox({
   createdAt = new Date().toISOString(),
 }) {
   const date = new Date(createdAt).toLocaleDateString('ko-KR');
+  const sportImage = sportImages[sportName] || sportImages.default;
+  
   return /* html */ `
     <div class="communityBox" id="${sportName}" data-id="${id}">
       <div class="box">
         <div class="imageContainer">
           <div class="likeButton"></div>
-          <img src="../assets/images/workout.jpg" alt="${sportName} 모임" />
+          <img src="${sportImage}" alt="${sportName} 모임" />
         </div>
         <div class="textContainer">
           <div class="areaSport">
-            <p class="sportName" id="${sportName}">${sportName}</p>
+            <p class="sportName">${sportName}</p>
             <p class="date">${date}</p>
           </div>
           <p class="title">${title}</p>
@@ -156,24 +167,12 @@ function handleInput(e) {
 searchForm.addEventListener('submit', handleInput);
 inputBtn.addEventListener('click', handleInput);
 
-badmintonBtn.addEventListener('click', () => {
-  isActiveFilterBtn({ target: badmintonBtn });
-  filterCategory('배드민턴');
-});
-
-bowlingBtn.addEventListener('click', () => {
-  isActiveFilterBtn({ target: bowlingBtn });
-  filterCategory('볼링');
-});
-
-golfBtn.addEventListener('click', () => {
-  isActiveFilterBtn({ target: golfBtn });
-  filterCategory('골프');
-});
-
-cycleBtn.addEventListener('click', () => {
-  isActiveFilterBtn({ target: cycleBtn });
-  filterCategory('자전거');
+filterButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    isActiveFilterBtn(e);
+    const sportName = button.textContent;
+    filterCategory(sportName);
+  });
 });
 
 resetBtn.addEventListener('click', () => {
