@@ -2,7 +2,6 @@ import { createCommunity } from './post.js';
 
 const saveBtn = document.querySelector('.save');
 const completeBtn = document.querySelector('.complete');
-const preview = document.querySelector('#markdown-preview');
 
 function renderSaveData() {
   const title = localStorage.getItem('title');
@@ -28,10 +27,10 @@ function handleSave() {
   const region2 = document.querySelector('#region2').value;
   const saveData = { title, text, category, region1, region2 };
 
-    if(!title || !text){
-        !title? alert('제목을 입력해주세요') : alert('내용을 입력해주세요');
-        return;
-    }
+  if(!title || !text){
+    !title? alert('제목을 입력해주세요') : alert('내용을 입력해주세요');
+    return;
+  }
 
   for (const [key, value] of Object.entries(saveData)) {
     if (value) {
@@ -41,7 +40,8 @@ function handleSave() {
 }
 
 function deleteSave() {
-  localStorage.clear();
+  window.localStorage.clear();
+  createCommunity();
 }
 
 function regionChange(e) {
