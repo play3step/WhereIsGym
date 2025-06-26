@@ -26,9 +26,11 @@ function createCommunityBox({
   sportName = 'sportName',
   title = 'title',
   createdAt = new Date().toISOString(),
+  documents = []
 }) {
   const date = new Date(createdAt).toLocaleDateString('ko-KR');
   const sportImage = sportImages[sportName] || sportImages.default;
+  const region = documents[0]?.title || '';
   
   return /* html */ `
     <div class="communityBox" id="${sportName}" data-id="${id}">
@@ -39,7 +41,10 @@ function createCommunityBox({
         </div>
         <div class="textContainer">
           <div class="areaSport">
-            <p class="sportName">${sportName}</p>
+            <div class="sport-region">
+              <p class="sportName">${sportName}</p>
+              ${region ? `<p class="regionName">· ${region}</p>` : ''}
+            </div>
             <p class="date">${date}</p>
           </div>
           <p class="title">${title}</p>

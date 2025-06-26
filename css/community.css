@@ -229,6 +229,12 @@ a {
   margin-bottom: 8px;
 }
 
+.sport-region {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
 .sportName {
   font-size: 13px;
   font-weight: 600;
@@ -291,4 +297,12 @@ a {
 .inputButton img {
   width: 16px;
   height: 16px;
+}
+
+.regionName {
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
