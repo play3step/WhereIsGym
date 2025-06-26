@@ -37,6 +37,8 @@ function handleSave() {
       localStorage.setItem(key, value);
     }
   }
+
+  alert('성공적으로 임시저장 되었습니다!');
 }
 
 function deleteSave() {
