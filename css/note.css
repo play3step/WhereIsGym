@@ -24,9 +24,9 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
+/* ol, ul {
 	list-style: none;
-}
+} */
 blockquote, q {
 	quotes: none;
 }
@@ -42,6 +42,11 @@ table {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.markdown-preview ul,
+.markdown-preview ol {
+  list-style-position: inside;
 }
 
 /* 페이지 전체 css */
