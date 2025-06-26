@@ -80,6 +80,7 @@ async function renderCommunityList() {
     
     // API에서 게시글 가져오기
     posts = await getAllPosts();
+    posts.reverse();
     posts.forEach((post) => renderCommunityBox(communityBoxs, post));
     
     // 좋아요 버튼 이벤트 추가
