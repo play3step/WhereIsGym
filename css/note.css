@@ -191,6 +191,10 @@ main {
   overflow-wrap: anywhere;
 }
 
+.markdown-preview p {
+  margin-bottom: 1.5em;
+}
+
 .text-field {
   resize: none;
   font-family: inherit;
