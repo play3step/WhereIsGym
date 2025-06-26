@@ -24,7 +24,8 @@ function processPostData(post) {
         id: post.id,
         sportName,
         title,
-        createdAt: post.createdAt
+        createdAt: post.createdAt,
+        documents: post.documents || []
     };
     return processedPost;
 }
