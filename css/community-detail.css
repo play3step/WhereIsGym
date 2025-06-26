@@ -189,10 +189,7 @@ main{
   margin-top: 40px;
 }
 
-.group-content p {
-  margin-bottom: 0.3em;
-}
-
 .group-content {
   white-space: pre-wrap;
+  line-height: 1.6;
 }
