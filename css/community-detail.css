@@ -29,31 +29,94 @@ img {
 }
 
 .layout{
-  margin: 0 220px;
+  margin: 0 360px;
 }
 
-.header {
+header{
+  width: 1200px;
+}
+
+header {
   height: 80px;
-  padding: 12px;
+  padding: 12px 0px;
+  margin-bottom: 25px;
   box-sizing: border-box;
 }
+
 .header-inner {
   display: flex;
   align-items: center;
-  
-  .nav{
-    display:flex;
-    gap: 48px;
-    font-size: 20px;
-    font-weight: 700;
-    padding-left: 48px;
-    padding-bottom: 8px;
-    transition : all 0.5s;
+}
 
-    > li:hover{
-      color:#ff8000
-    }
-  }
+.nav {
+  display: flex;
+  gap: 48px;
+  font-size: 20px;
+  font-weight: 700;
+  padding-left: 48px;
+  transition: all 0.5s;
+}
+
+.nav > li:hover {
+  color: #ff8000;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.headerButtonContainer {
+  display: flex;
+  margin-left: auto;
+  gap: 32px;
+}
+
+.input {
+  width: 200px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  padding: 0 40px 0 16px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.input:focus {
+  border-color: #ff8000;
+  box-shadow: 0 0 0 2px rgba(255, 128, 0, 0.1);
+}
+
+.inputButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.inputButton img {
+  width: 16px;
+  height: 16px;
+}
+
+.make {
+  background-color: #fff;
+  color: #ff8000;
+  font-size: 14px;
+  border-radius: 8px;
+  padding: 3px 10px;
+  font-weight: 500;
+  border: 1.5px solid;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.make:hover {
+  background-color: #ff8000;
+  color: #fff;
 }
 
 main{
