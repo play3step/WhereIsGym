@@ -188,3 +188,11 @@ main{
 .group-content{
   margin-top: 40px;
 }
+
+.group-content p {
+  margin-bottom: 0.3em;
+}
+
+.group-content {
+  white-space: pre-wrap;
+}
