@@ -30,7 +30,7 @@ fetch(`https://kdt-api.fe.dev-cos.com/documents/${postId}`,{
     const [categorytext,titletext] = data.title.split('-') 
     title.textContent = titletext
     category.textContent = categorytext
-    content.textContent = data.content
+    content.innerHTML = marked.parse(data.content);
 
     // 카테고리에 맞는 이미지 설정
     const categoryImage = sportImages[categorytext.trim()]
