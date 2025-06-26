@@ -30,15 +30,6 @@ fetch(`https://kdt-api.fe.dev-cos.com/documents/${postId}`,{
     const [categorytext,titletext] = data.title.split('-') 
     title.textContent = titletext
     category.textContent = categorytext
-    
-    if (data.documents && data.documents.length > 0) {
-      const region = data.documents[0].title;
-      const regionElement = document.createElement('div');
-      regionElement.className = 'region';
-      regionElement.textContent = region;
-      category.parentElement.appendChild(regionElement);
-    }
-    
     content.textContent = data.content
 
     // 카테고리에 맞는 이미지 설정
