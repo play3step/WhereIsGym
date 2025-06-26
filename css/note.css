@@ -50,6 +50,14 @@ textarea {
   border: 0;
   outline: none;
 }
+input::placeholder,
+textarea::placeholder {
+  color: #666;
+}
+input:focus,
+textarea:focus {
+  border-color: #888888;
+}
 
 /* 헤더 */
 header * {
