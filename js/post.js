@@ -59,20 +59,23 @@ export function createCommunity() {
     return;
   }
 
-  createCommunityTitle({
-    title: titleText,
-  })
-    .then((Community) =>
-      createCommunityContent(
+  createCommunityTitle({ title: titleText })
+    .then((Community) => {
+      const id = Community.id;
+      return createCommunityContent(
         { title: Community.title, content: contentText },
-        Community.id
-      )
-    )
-    .then((Community) =>
-      createCommunityTitle({ parent: Community.id, title: communityRegion() })
-    )
-    .then(() => {
-      alert('모임 글 작성이 완료되었습니다.')
+        id
+      ).then(() => id); // 없어도 되나?
+    })
+    .then((id) => {
+      return createCommunityTitle({
+        parent: id,
+        title: communityRegion()
+      }).then(() => id);
+    })
+    .then((id) => {
+      alert('모임 글 작성이 완료되었습니다.');
+      window.location.href = `/pages/community-detail.html?id=${id}`;
     })
 }
 
