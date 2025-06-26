@@ -21,6 +21,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
@@ -196,8 +197,9 @@ main {
   overflow-wrap: anywhere;
 }
 
-.markdown-preview p {
-  margin-bottom: 1.5em;
+#markdown-preview {
+  white-space: pre-wrap;
+  line-height: 1.6;
 }
 
 .text-field {
