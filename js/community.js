@@ -1,42 +1,71 @@
-import { data } from '../data/communityData.js';
+import { getAllPosts, filterPostsBySport } from '../apis/postController.js';
 
 const communityBoxs = document.querySelector('.communityBoxs');
-const golfBtn = document.querySelector('.golf');
-const cycleBtn = document.querySelector('.cycle');
-const badmintonBtn = document.querySelector('.badminton');
-const bowlingBtn = document.querySelector('.bowling');
+const filterButtons = document.querySelectorAll('.filterList li');
 const resetBtn = document.querySelector('.resetButton');
 const searchForm = document.querySelector('.searchForm');
 const inputBtn = document.querySelector('.inputButton');
 
+let posts = []; // 전체 게시글을 저장할 변수
+
+const sportImages = {
+  '배드민턴': '../assets/groupImage/badminton.jpg',
+  '볼링': '../assets/groupImage/balling.jpg',
+  '야구': '../assets/groupImage/baseball.jpg',
+  '농구': '../assets/groupImage/bascketball.jpg',
+  '자전거': '../assets/groupImage/cycle.jpg',
+  '축구': '../assets/groupImage/football.jpg',
+  '골프': '../assets/groupImage/golf.jpg',
+  '수영': '../assets/groupImage/swimming.jpg',
+  '탁구': '../assets/groupImage/tabletennis.jpg',
+};
+
 //태그 생성
 function createCommunityBox({
-  photo = 'photo',
-  title = 'title',
-  area = 'area',
+  id,
   sportName = 'sportName',
+  title = 'title',
+  createdAt = new Date().toISOString(),
 }) {
+  const date = new Date(createdAt).toLocaleDateString('ko-KR');
+  const sportImage = sportImages[sportName] || sportImages.default;
+  
   return /* html */ `
-     
-            <div class="communityBox" id="${sportName}">
-            <div class="box">
-            <div class="imageContainer">
-            <input type="checkbox" class="checkbox"/>
-              <div class="likeButton"></div>
-              <img
-                src="${photo}"
-              />
-            </div>
-            <div class="textContainer">
-              <div class="areaSport">
-                <p class="area" id="${area}">${area} ·</p>
-                <p class="sportName" id="${sportName}">${sportName}</p>
-              </div>
-              <p class="title">${title}</p>
-            </div>
-            </div>
-          </div>`;
+    <div class="communityBox" id="${sportName}" data-id="${id}">
+      <div class="box">
+        <div class="imageContainer">
+          <div class="likeButton"></div>
+          <img src="${sportImage}" alt="${sportName} 모임" />
+        </div>
+        <div class="textContainer">
+          <div class="areaSport">
+            <p class="sportName">${sportName}</p>
+            <p class="date">${date}</p>
+          </div>
+          <p class="title">${title}</p>
+        </div>
+      </div>
+    </div>`;
 }
+
+// 게시글 클릭 이동
+function handlePostClick(e) {
+  const postBox = e.target.closest('.communityBox');
+  if (!postBox) return;
+  
+  const postId = postBox.dataset.id;
+  if (!postId) return;
+
+  if (e.target.classList.contains('likeButton')) return;
+  
+  window.location.href = `/pages/community-detail.html?id=${postId}`;
+}
+
+window.addEventListener('popstate', (e) => {
+  if (e.state && e.state.postId) {
+    renderCommunityList();
+  }
+});
 
 //모임 렌더링
 function renderCommunityBox(target, data) {
@@ -44,30 +73,54 @@ function renderCommunityBox(target, data) {
 }
 
 //전체 모임 렌더링
-function renderCommunityList() {
-  data.forEach((data) => renderCommunityBox(communityBoxs, data));
+async function renderCommunityList() {
+  try {
+    // 기존 게시글 삭제
+    communityBoxs.innerHTML = '';
+    
+    // API에서 게시글 가져오기
+    posts = await getAllPosts();
+    posts.reverse();
+    posts.forEach((post) => renderCommunityBox(communityBoxs, post));
+    
+    // 좋아요 버튼 이벤트 추가
+    addLikeButtonListeners();
+    
+    // 게시글 클릭 이벤트 추가
+    communityBoxs.addEventListener('click', handlePostClick);
+  } catch (error) {
+    console.error('게시글을 렌더링하는 중 오류 발생:', error);
+    communityBoxs.innerHTML = '<p>게시글을 불러오는 중 오류가 발생했습니다.</p>';
+  }
 }
-renderCommunityList();
+
+//좋아요
+function isActiveLike(e) {
+  const target = e.target;
+  target.classList.toggle('active');
+}
+
+// 좋아요 버튼 이벤트 리스너 등록
+function addLikeButtonListeners() {
+  const likeBtns = document.querySelectorAll('.likeButton');
+  likeBtns.forEach((likebtn) => {
+    likebtn.addEventListener('click', isActiveLike);
+  });
+}
 
 // 필터링
-function filterCategory(node, categoryValue) {
-  const communityBoxs = document.querySelectorAll('.communityBox');
-  communityBoxs.forEach((communityBox) => {
-    const category = communityBox.querySelector(node);
-
-    if (!(category.id === categoryValue)) {
-      communityBox.hidden = true;
-    } else {
-      communityBox.hidden = false;
-    }
-  });
+function filterCategory(sportName) {
+  communityBoxs.innerHTML = '';
+  const filteredPosts = filterPostsBySport(posts, sportName);
+  filteredPosts.forEach((post) => renderCommunityBox(communityBoxs, post));
+  addLikeButtonListeners();
 }
+
 //필터링 초기화
 function filterReset() {
-  const communityBoxs = document.querySelectorAll('.communityBox');
-  communityBoxs.forEach((communityBox) => {
-    communityBox.hidden = false;
-  });
+  communityBoxs.innerHTML = '';
+  posts.forEach((post) => renderCommunityBox(communityBoxs, post));
+  addLikeButtonListeners();
 }
 
 //클릭한 필터 버튼 활성화
@@ -83,69 +136,55 @@ function isActiveFilterBtn(e) {
   });
 }
 
-//좋아요
-function isActiveLike(e) {
-  const target = e.target;
-  target.classList.toggle('active');
-}
-
-//검색 기능 -> 보완 필요 : 배드민턴 대신 배드만 검색해도 결과가 나오게
+//검색 기능
 function handleInput(e) {
   e.preventDefault();
   isActiveFilterBtn(e);
   const input = document.querySelector('.input');
-  const keyword = input.value;
-  if (!keyword.trim()) {
+  const keyword = input.value.trim().toLowerCase();
+  
+  if (!keyword) {
     alert('검색어를 입력해 주세요.');
     input.focus();
+    return;
   }
 
-  if (searchKeyword(keyword) === 0) alert('일치하는 모임이 없습니다.');
+  const filteredPosts = posts.filter(post => 
+    post.sportName.toLowerCase().includes(keyword) ||
+    post.title.toLowerCase().includes(keyword)
+  );
+
+  communityBoxs.innerHTML = '';
+  if (filteredPosts.length === 0) {
+    alert('일치하는 모임이 없습니다.');
+    return;
+  }
+  
+  filteredPosts.forEach(post => renderCommunityBox(communityBoxs, post));
+  addLikeButtonListeners();
 }
 
-//검색어와 일치하는 모임 찾기
-function searchKeyword(keyword) {
-  let matchNum = 0;
-  data.forEach(({ title, area, sportName }) => {
-    if (
-      keyword.includes(title) ||
-      keyword.includes(area) ||
-      keyword.includes(sportName)
-    ) {
-      filterCategory('.sportName', sportName);
-      matchNum++;
-    }
-  });
-  return matchNum;
-}
-
+// 이벤트 리스너 등록
 searchForm.addEventListener('submit', handleInput);
 inputBtn.addEventListener('click', handleInput);
 
-badmintonBtn.addEventListener('click', () =>
-  filterCategory('.sportName', '배드민턴')
-);
-bowlingBtn.addEventListener('click', () =>
-  filterCategory('.sportName', '볼링')
-);
-golfBtn.addEventListener('click', () => filterCategory('.sportName', '골프'));
-cycleBtn.addEventListener('click', () =>
-  filterCategory('.sportName', '자전거')
-);
-resetBtn.addEventListener('click', filterReset);
-
-badmintonBtn.addEventListener('click', isActiveFilterBtn);
-bowlingBtn.addEventListener('click', isActiveFilterBtn);
-golfBtn.addEventListener('click', isActiveFilterBtn);
-cycleBtn.addEventListener('click', isActiveFilterBtn);
-resetBtn.addEventListener('click', isActiveFilterBtn);
-
-//DOM이 로드된 후에만 likeButton을 찾고 이벤트 핸들러를 등록
-document.addEventListener('DOMContentLoaded', function () {
-  const likeBtns = document.querySelectorAll('.likeButton');
-  if (likeBtns) {
-    likeBtns.forEach((likebtn) => {
-      likebtn.addEventListener('click', isActiveLike);
-    });
-  }
+filterButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    isActiveFilterBtn(e);
+    const sportName = button.textContent;
+    filterCategory(sportName);
+  });
 });
+
+resetBtn.addEventListener('click', () => {
+  isActiveFilterBtn({ target: resetBtn });
+  filterReset();
+});
+
+const makeButton = document.querySelector('.make');
+makeButton.addEventListener('click', () => {
+  window.location.href = '/pages/note.html';
+});
+
+// 페이지 로드시 게시글 렌더링
+renderCommunityList();

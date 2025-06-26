@@ -234,7 +234,8 @@ button {
 }
 
 .view-all-link:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color:#ff8000
 }
 
 
@@ -267,22 +268,26 @@ button {
 }
 
 .more-link:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color:#ff8000
 }
 
 .community-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 16px;
   width: 100%;
   max-width: 928px;
+  margin: 0 auto;
 }
 
 .card {
-  aspect-ratio: 220 / 190;
-  overflow: hidden;
+  width: 220px;
+  height: 190px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card img {

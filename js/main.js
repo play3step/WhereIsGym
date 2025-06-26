@@ -1,5 +1,3 @@
-import { data } from '../data/communityData.js';
-
 // 내 위치 띄우기
 window.addEventListener('DOMContentLoaded', function () {
   if ('geolocation' in navigator) {
@@ -58,14 +56,46 @@ document.querySelector('.search-input-wrap').addEventListener('submit', function
 });
 
 
-// communityData.js 사진 가져와서 뿌리기
+// api에서 데이터 가져와서 사진 뿌리기
+const sportImages = {
+  '배드민턴': '../assets/groupImage/badminton.jpg',
+  '볼링': '../assets/groupImage/balling.jpg',
+  '야구': '../assets/groupImage/baseball.jpg',
+  '농구': '../assets/groupImage/bascketball.jpg',
+  '자전거': '../assets/groupImage/cycle.jpg',
+  '축구': '../assets/groupImage/football.jpg',
+  '골프': '../assets/groupImage/golf.jpg',
+  '수영': '../assets/groupImage/swimming.jpg',
+  '탁구': '../assets/groupImage/tabletennis.jpg',
+};
+
 const cardArea = document.querySelector('.community-cards');
 
-const randomFour = data.length <= 4
-  ? data : data.slice().sort(() => Math.random() - 0.5).slice(0, 4);
+fetch('https://kdt-api.fe.dev-cos.com/documents', {
+  method: 'GET',
+  headers: {
+    'x-username': 'fes-6-whereisgym'
+  }
+})
+  .then(res => res.json())
+  .then(data => {
+    // 무작위 4개 선택
+    const randomFour = data.length <= 4
+      ? data : data.slice().sort(() => Math.random() - 0.5).slice(0, 4);
 
-cardArea.innerHTML = randomFour.map(item => `
-  <a href="#" class="card">
-    <img src="${item.photo}" alt="${item.title}">
-  </a>
-`).join('');
+    // 카드 렌더링
+    cardArea.innerHTML = randomFour.map(item => {
+      const id = item.id;
+      const [category] = item.title.split('-');
+      const imageSrc = sportImages[category];
+
+      return `
+        <a href="/pages/community-detail.html?id=${id}" class="card">
+          <img src="${imageSrc}" alt="${category} 소모임 이미지">
+        </a>
+      `;
+    }).join('');
+  })
+  .catch(err => {
+    console.error('데이터 불러오기 실패:', err);
+  });

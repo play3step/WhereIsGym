@@ -257,3 +257,7 @@ main {
 .footer-btn.complete:hover {
   background-color: #ff8400;
 }
+  margin-right: 40px;
+  gap: 20px;
+}
+
