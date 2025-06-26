@@ -31,9 +31,33 @@ export function createCommunity() {
   const title = document.querySelector('.title');
   const content = document.querySelector('.text-field');
 
+  const category = document.querySelector('#category');
+  const region1 = document.querySelector('#region1');
+  const region2 = document.querySelector('#region2');
+
   const categoryText = communitycategory();
   const titleText = categoryText + title.value;
   const contentText = content.value;
+
+  if (!category.value) {
+    alert('카테고리를 선택해주세요.');
+    return;
+  }
+
+  if (!region1.value || !region2.value) {
+    alert('지역을 선택해주세요.');
+    return;
+  }
+
+  if (!title.value.trim()) {
+    alert('제목을 입력해주세요.');
+    return;
+  }
+
+  if (!content.value.trim()) {
+    alert('내용을 입력해주세요.');
+    return;
+  }
 
   createCommunityTitle({
     title: titleText,
@@ -46,7 +70,10 @@ export function createCommunity() {
     )
     .then((Community) =>
       createCommunityTitle({ parent: Community.id, title: communityRegion() })
-    );
+    )
+    .then(() => {
+      alert('모임 글 작성이 완료되었습니다.')
+    })
 }
 
 //지역 받아오기
