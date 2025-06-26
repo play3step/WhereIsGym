@@ -1,141 +1,263 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
 }
-
-button {
-  background-color: transparent;
-  outline: none;
-  border: 0;
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
-
-ul,
-ol {
-  list-style: none;
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-input{
-  border:0;
-  outline:none
-}
-
-textarea{
-  outline: none;
+/* 페이지 전체 css */
+input,
+textarea {
   border: 0;
+  outline: none;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #666;
+}
+input:focus,
+textarea:focus {
+  border-color: #888888;
 }
 
-
-body{
-  height: 100vh;
-  overflow: hidden;
-}
-
-.layout {
-  margin: 0 220px;
-  height: 100vh;
+/* 헤더 */
+header * {
+  font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 80px;
   padding: 12px;
   box-sizing: border-box;
+  background: #fff;
+  z-index: 1000;
 }
+
 .header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  
-  .nav{
-    display:flex;
-    gap: 48px;
-    font-size: 20px;
-    font-weight: 700;
-    padding-left: 48px;
-    padding-bottom: 8px;
-    transition : all 0.5s;
-
-    > li:hover{
-      color:#ff8000
-    }
-  }
 }
 
-.main-field{
-  margin-top: 40px;
-  display:flex;
-  flex-direction: column;
-  gap: 20px;
+.header .logo {
+  margin: 0;
 }
 
-.title{
-  padding-bottom: 26px;
-  border-bottom:1px solid rgba(0, 0, 0, 0.05);
-
-font-size: 24px;
-font-weight: 700;
+.header .logo a {
+  display: block;
 }
 
-.title::placeholder{
-  font-size: 24px;
-  font-weight: 500;
+.header .nav {
+  display: flex;
+  gap: 48px;
+  margin: 0;
+  padding-left: 48px;
+  list-style: none;
 }
 
-.title:focus{
-border-bottom:1px solid rgba(0, 0, 0, 0.25);
+.header .nav li a {
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.text-field{
-  height: 60vh;
-  font-size: 1rem;
-  margin-bottom: 40px;
+.header .nav li a:hover {
+  color: #ff8000;
 }
 
-.footer-wrap{
-  margin-top: 20px;
-  height: 100px;
-  background-color: #eee;
+/* select 커스텀 */
+.select-wrapper {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
-.footer-btn{
-  padding: 16px 24px;
-  border: 1px solid #222;
-  border-radius: 50px;
-  cursor: pointer;
-  min-width: 100px;
-  transition: all 0.3s;
+.select-box {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ccc" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  background-size: 25px;
+  box-sizing: border-box;
+  transition: all 0.1s ease;
 }
 
-.footer-btn:hover{
-  color:#fff;
-  background-color: #ff8000;
-  border: 0;
+.select-box:hover {
+  border-color: #ff962c;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ff962c" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
 }
 
-.complete{
-  background-color: #222;
-  color:#fff
+.select-box:focus {
+  outline: none;
+  border-color: #ff962c;
+  box-shadow: 0 0 0 2px rgba(255, 150, 44, 0.4);
 }
 
+/* 메인 컨텐츠 */
+main {
+  max-width: 1440px;
+  margin: 0 auto;
+}
 
-.footer-btn_wrap{
+.editor-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+.title {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 18px;
+  margin-bottom: 24px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.editor-body {
+  display: flex;
+  gap: 24px;
+}
+
+.text-field,
+.markdown-preview {
+  flex: 1;
+  height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+
+.text-field {
+  resize: none;
+  font-family: inherit;
+}
+
+.markdown-preview {
+  background-color: #fdfdfd;
+  overflow-y: auto;
+}
+
+/* aside 바 */
+.footer-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.footer-inner {
+  max-width: 1440px;
   height: 100%;
-  display:flex;
+  margin: 0 auto;
+  display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.footer-btn_wrap {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.footer-btn.save {
+  background-color: #f1f1f1;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.footer-btn.save:hover {
+  background-color: #d9d9d9;
+}
+
+.footer-btn.complete {
+  background-color: #ff962c;
+  color: #fff;
+  transition: background-color 0.2s;
+}
+
+.footer-btn.complete:hover {
+  background-color: #ff8400;
+}
   margin-right: 40px;
   gap: 20px;
 }
 
-.markdown-preview{
-  background-color: #222;
-  
-}

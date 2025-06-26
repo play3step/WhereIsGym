@@ -1,14 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko-KR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../assets/images/favicon-32x32.png" />
-  <link rel="stylesheet" href="../css/note.css" />
-  <title>모임 만들기</title>
-</head>
-<body>
-  <div class="layout">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../assets/images/favicon-32x32.png" />
+    <link rel="stylesheet" href="../css/note.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script src="../js/communityMain.js" type="module"></script>
+
+    <title>모임 만들기</title>
+  </head>
+  <body>
     <header class="header">
       <div class="header-inner">
         <h1 class="logo">
@@ -88,35 +90,83 @@
           </a>
         </h1>
         <nav>
-        <ul class="nav">
-          <li><a href="../pages/community.html">모임</a></li>
-          <li><a href="../pages/search.html">시설 찾기</a></li>
-        </ul>
-      </nav>
+          <ul class="nav">
+            <li><a href="../pages/community.html">모임</a></li>
+            <li><a href="../pages/search.html">시설 찾기</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
+
     <main>
       <form>
-        <select name="" id="" aria-placeholder="카테고리">
-          <option value="">배드민턴</option>
-          <option value="">축구</option>
-          <option value="">자전거</option>
-          <option value="">러닝</option>
-        </select>
-        <div class="main-field">
-        <input type="text" placeholder="제목을 입력하세요." class="title" id="title"/>
-        <textarea name="" id="" class="text-field"></textarea>
-      </div>
-      <div class="markdown-preview"></div>
+        <div class="select-wrapper">
+          <select class="select-box" id="category">
+            <option value="" disabled selected hidden>카테고리 선택</option>
+            <option value="배드민턴">배드민턴</option>
+            <option value="볼링">볼링</option>
+            <option value="야구">야구</option>
+            <option value="농구">농구</option>
+            <option value="자전거">자전거</option>
+            <option value="축구">축구</option>
+            <option value="골프">골프</option>
+            <option value="수영">수영</option>
+            <option value="탁구">탁구</option>
+          </select>
+
+          <select class="select-box" id="region1" onchange="regionChange(this)">
+            <option value="" disabled selected hidden>시/도 선택</option>
+            <option value="강원">강원</option>
+            <option value="경기">경기</option>
+            <option value="경남">경남</option>
+            <option value="경북">경북</option>
+            <option value="광주">광주</option>
+            <option value="대구">대구</option>
+            <option value="대전">대전</option>
+            <option value="부산">부산</option>
+            <option value="서울">서울</option>
+            <option value="울산">울산</option>
+            <option value="인천">인천</option>
+            <option value="전남">전남</option>
+            <option value="전북">전북</option>
+            <option value="제주">제주</option>
+            <option value="충남">충남</option>
+            <option value="충북">충북</option>
+          </select>
+
+          <select class="select-box" id="region2">
+            <option value="" disabled selected hidden>군/구 선택</option>
+          </select>
+        </div>
+
+        <div class="editor-container">
+          <input
+            type="text"
+            placeholder="제목을 입력하세요"
+            class="title"
+            id="title"
+          />
+
+          <div class="editor-body">
+            <textarea
+              id="text"
+              class="text-field"
+              placeholder="# 여기에 마크다운을 작성하세요"
+            ></textarea>
+
+            <div class="markdown-preview" id="markdown-preview"></div>
+          </div>
+        </div>
       </form>
     </main>
-    <aside class="footer-wrap">
-      <div class="footer-btn_wrap">
-      <button type="button" class="footer-btn save">임시저장</button>
-      <button class="footer-btn complete">완료</button>
-    </div>
-  </aside>
-  </div>
 
-</body>
+    <aside class="footer-wrap">
+      <div class="footer-inner">
+        <div class="footer-btn-wrap">
+          <button type="button" class="footer-btn save">임시저장</button>
+          <button class="footer-btn complete">완료</button>
+        </div>
+      </div>
+    </aside>
+  </body>
 </html>
