@@ -41,6 +41,35 @@ fetch(`https://kdt-api.fe.dev-cos.com/documents/${postId}`,{
     return data
 })
 
+async function deleteChildren(id) {
+  try {
+    const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${id}`, {
+      headers: {
+        "x-username": 'fes-6-whereisgym'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('문서 정보를 가져오는데 실패했습니다.');
+    }
+
+    const document = await response.json();
+
+    // 하위 문서가 있다면 먼저 삭제합니다
+    if (document.documents && document.documents.length > 0) {
+      for (const childDoc of document.documents) {
+        await deletePost(childDoc.id);
+      }
+    }
+    
+    deletePost(id)
+
+  } catch (error) {
+    console.error('문서를 삭제하는 중 오류 발생:', error);
+    throw error;
+  }
+}
+
 // 삭제 버튼 이벤트 리스너
 const deleteButton = document.querySelector('.group-btn:last-child');
 if (deleteButton) {
@@ -49,7 +78,7 @@ if (deleteButton) {
     
     if (confirmDelete) {
       try {
-        await deletePost(postId);
+        await deleteChildren(postId);
         alert('게시글이 성공적으로 삭제되었습니다.');
         window.location.href = '/pages/community.html';
       } catch (error) {
