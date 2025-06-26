@@ -17,6 +17,13 @@ function renderSaveData() {
       document.querySelector(`#${key}`).value = value;
     }
   }
+
+  if (text) {
+    const preview = document.querySelector('#markdown-preview');
+    if (preview) {
+      preview.innerHTML = marked.parse(text);
+    }
+  }
 }
 
 function handleSave() {
