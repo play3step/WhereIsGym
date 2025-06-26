@@ -45,6 +45,41 @@ document.querySelectorAll('.tag').forEach(el => {
 });
 
 
+// 랜덤으로 둘러보기
+document.querySelector('.random-link').addEventListener('click', function(e) {
+  e.preventDefault();
+
+  const keywords = [
+  // 체력·헬스
+  '헬스', 'PT', 'F45', '크로스핏', '줄넘기', '스피닝', '역도',
+
+  // 격투기·무도
+  '복싱', '무에타이', '킥복싱', '주짓수', '유도',
+  '레슬링', 'MMA', '합기도', '검도', '태권도', '펜싱',
+
+  // 요가·필라테스
+  '요가', '필라테스', '플라잉요가',
+
+  // 댄스·유산소
+  '줌바댄스', '에어로빅', '발레',
+
+  // 구기 스포츠
+  '농구', '축구', '풋살', '야구', '럭비', '배구', '하키',
+
+  // 라켓 스포츠
+  '테니스', '탁구', '배드민턴', '스쿼시',
+
+  // 레저/기타 스포츠
+  '수영장', '볼링', '골프', '당구', '클라이밍', '양궁', '사격',
+  '패러글라이딩', '스카이다이빙', '스노우보드', '스키', '컬링', '승마',
+  '인라인스케이트', '아이스스케이트', '서핑', '게이트볼'
+  ];
+
+  const random = keywords[Math.floor(Math.random() * keywords.length)];
+  window.location.href = `./pages/search_list.html?query=${encodeURIComponent(random)}`;
+})
+
+
 // 검색어 없을 때 페이지 이동 막고 alert창 띄우기
 document.querySelector('.search-input-wrap').addEventListener('submit', function(e) {
   const input = this.querySelector('input[name="query"]');
