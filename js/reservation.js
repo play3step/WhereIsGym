@@ -109,6 +109,8 @@ function runReservationLogic() {
   function formatPhoneNumber(node, e) {
     // 소득공제용일 때 핸드폰 번호 포맷
     const raw = node.value.replace(/\D/g,'')
+   
+
     if (raw.length <= 11) {
       node.value = raw.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
     } else if (raw.length > 11) {
