@@ -29,6 +29,8 @@
 ## 📁 프로젝트 구조
 ```
 📦 WhereIsGym/
+├── 📁 apis/ # api 관리
+│   └── postController.js
 ├── 📁 assets/ # 이미지, 아이콘 등 정적 리소스
 ├── 📁 css/ # 스타일시트
 │   ├── reset.css
@@ -40,6 +42,7 @@
 │   ├── local_storage.js
 │   ├── community.js
 │   ├── communityMain.js
+│   ├── community-detail.js
 │   ├── detail.js
 │   ├── post.js
 │   ├── reservation.js
